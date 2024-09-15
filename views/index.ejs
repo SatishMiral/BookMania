@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>BookMania</title>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <!-- <img src="../public/images/books_background.jpg" alt="Books background picture" class="books"> -->
+            <div class="row1">
+                <h1>A room without books is like<br/> a body without a soul.</h1>
+            </div>
+            <div class="row2">
+                <h2>Find Your Book</h2>
+                <form action="/submit" method="post">
+                    <input type="text" class="search" name="search" placeholder="Enter the book's name" >
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+                <img src="images/bg2.png" alt="kids logo" />
+            </div>
+        </div>
+        <div class="card-container">
+            <%if(locals.data){%>
+                <%- include("./partials/container.ejs") %>
+            <% } %>
+        </div>
+    </header>
+</body>
+</html>
