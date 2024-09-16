@@ -1,0 +1,13 @@
+<% if(locals.data){ %>
+    <%data.forEach((item)=>{%>
+        <div class="container">
+            <div class="card">
+                <img src= <%= item.volumeInfo.imageLinks.smallThumbnail %> %> alt="" />
+                <div class="bottom">
+                    <h3 class="title"><%=item.volumeInfo.title%></h3>
+                    <p class="amount"><%=item.volumeInfo.authors%></p>
+                </div>
+            </div>
+        </div>
+    <% }) %>    
+<% } %>
