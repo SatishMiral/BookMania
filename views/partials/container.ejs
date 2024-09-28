@@ -1,13 +1,15 @@
-<% if(locals.data){ %>
-    <%data.forEach((item)=>{%>
-        <div class="container">
-            <div class="card">
-                <img src= <%= item.volumeInfo.imageLinks.smallThumbnail %> %> alt="" />
-                <div class="bottom">
-                    <h3 class="title"><%=item.volumeInfo.title%></h3>
-                    <p class="amount"><%=item.volumeInfo.authors%></p>
+<div class="parent-container">
+    <% if(locals.data){ %>
+        <%data.forEach((item)=>{%>
+            <div class="container">
+                <div class="card">
+                    <button class="buttom img"><img src="<%= item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail ? item.volumeInfo.imageLinks.smallThumbnail : '/path/to/default/image.jpg' %>" alt="" /></button>
+                    <div class="bottom title">
+                        <h3 class="title"><%=item.volumeInfo.title%></h3>
+                        <p class="amount"><%=item.volumeInfo.authors%></p>
+                    </div>
                 </div>
             </div>
-        </div>
-    <% }) %>    
-<% } %>
+        <% }) %>    
+    <% } %>
+</div>
