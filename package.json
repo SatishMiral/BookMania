@@ -3,7 +3,8 @@
     "axios": "^1.7.7",
     "body-parser": "^1.20.3",
     "ejs": "^3.1.10",
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "pg": "^8.13.0"
   },
   "name": "bookmania",
   "version": "1.0.0",

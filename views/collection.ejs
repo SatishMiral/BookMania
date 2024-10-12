@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <%- include("./partials/header.ejs") %>
+        <!-- <nav class="main-nav">
+            <ul>
+                <li>
+                    <button>Order by</button>
+                </li>
+            </ul>
+        </nav> -->
+        <div class="main-section">
+            <% if(locals.data){%>
+                <% data.forEach((item)=>{ %>
+                    <div class="book-content">
+                        <div class="book-img">
+                            <img src=<%=item.thumbnail%> alt="thumbnail" />
+                        </div>
+                        <div class="book-notes">
+                            <h1><%= item.title %></h1>
+                            <% if(item.description.length > 250){ %> 
+                                <p><%= item.description.substring(0, 250); %> 
+                                    <a class="read-more" href=<%=item.prelink%>>Read More...</a>
+                                </p>
+                            <% } else { %> 
+                                <p><%= item.description %><a class="read-more" href=<%=item.prelink%>>Read More...</a></p>
+                            <% } %>
+                            <div class="info-row">
+                                <h4 class="author">
+                                    <%= item.author %>
+                                </h4>
+                                <h5>Date:<%= item.date %></h5>
+                            </div>
+                            <div class= "bottom-row">
+                                <form action="/edit">
+                                    <button class="btn">Edit</button>
+                                </form>
+                                <form action="/delete" method="post">
+                                    <input type="hidden" name="title" value="<%=item.id%>">
+                                    <button class="btn">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <%}%>
+        </div>
+    </header>
+    <footer class="collection-footer">
+        <%- include("./partials/footer.ejs") %>
+    </footer>
+</body>
+</html>

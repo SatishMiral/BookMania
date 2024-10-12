@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <%- include("./partials/header.ejs") %>
+            <div class="overlay">
+                <% if(locals.data){%>
+                <div class="overlay-inner">
+                    <div class="inner-box">
+                        <img src=<%=data.thumbnail%> alt="thumbnail" />
+                        <div class="info">
+                            <h1><%=data.title%></h1>
+                            <h3><%=data.authors%></h3>
+                            <h4><%=data.publisher%><span><%=data.publishedDate%></span></h4><br/>
+                            <div class="buttons">
+                                <a href=<%=data.previewLink%>><button class="button">More</button></a>
+                                <form action="/collection" method="post">
+                                    <input type="hidden" name="title" value="<%=data.title%>">
+                                    <input type="hidden" name="author" value="<%=data.authors%>">
+                                    <input type="hidden" name="description" value="<%=data.description%>">
+                                    <input type="hidden" name="thumbnail" value="<%=data.thumbnail%>">
+                                    <input type="hidden" name="date" value="<%= data.publishedDate %>">
+                                    <input type="hidden" name="previewLink" value="<%= data.previewLink %>">
+                                    <button type="submit">Add</button>
+                                </form> 
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="description"><%=data.description%></h4>
+                </div>
+                <% } %>
+            </div>
+    </header>
+    <footer class="view-footer">
+        <%- include("./partials/footer.ejs") %>
+    </footer>
+</body>
+</html>
