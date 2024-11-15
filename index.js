@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 //imported express and axios
 import express from "express";
 import axios from "axios";
@@ -5,7 +8,6 @@ import bodyParser from "body-parser";
 import pg from "pg";
 
 const app = express();
-const port = 3000;
 
 //for database connection
 const db = new pg.Client({
@@ -34,7 +36,7 @@ app.post("/",async (req,res) =>{
     // console.log(req.body);
     const search = req.body.search;
     try {
-        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=AIzaSyA6SaT23KNiiA6DnUfUQTvFeyAcQEkwnSU&maxResults=40`);
+        const response = await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${search}&key=${process.env.APIKEY}&maxResults=40`);
         const result = response.data.items;
         // console.log(result);
         res.render("index.ejs", { data: result });
@@ -46,11 +48,6 @@ app.post("/",async (req,res) =>{
       }
     // res.render("index.ejs",{data : data})
 })
-
-//to get view page from collection page
-// app.get("/view",(req,res)=>{
-//   res.render("view.ejs",{data : req.body});
-// })
 
 //for view page to get more details about the book (leads to google books webpage)
 app.post('/view', async (req, res) => {
@@ -124,6 +121,8 @@ app.post('/edit', async (req,res) =>{
 
 });
 
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
   });
